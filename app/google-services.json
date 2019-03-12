@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "456602514519",
+    "firebase_url": "https://api-project-456602514519.firebaseio.com",
+    "project_id": "api-project-456602514519",
+    "storage_bucket": "api-project-456602514519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456602514519:android:125a273ff15a4f5e",
+        "android_client_info": {
+          "package_name": "com.jahanbabu.mvpdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456602514519-hu7ionskb4hk4k136rl1um25f88nvcu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjQ1M_s3oGhnR-lZfioxdEpzkR2eRXebA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

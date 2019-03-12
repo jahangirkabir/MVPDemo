@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MVP Demo</string>
+    <!-- Strings related to login -->
+    <string name="action_sign_in">SIGN IN</string>
+    <string name="google">Google</string>
+    <string name="network_error_n_tap_to_retry">Network error</string>
+    <string name="web_client_id">456602514519-3jl0atc6r25k3s5b776uaufc67efpott.apps.googleusercontent.com</string>
+</resources>
