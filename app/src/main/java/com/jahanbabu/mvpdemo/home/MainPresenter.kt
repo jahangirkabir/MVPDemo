@@ -28,6 +28,7 @@ class MainPresenter(
     }
 
     override fun requestDataFromServer() {
+        mainView.showProgress()
         getMovieIntractor.getMovieArrayList(this)
     }
 

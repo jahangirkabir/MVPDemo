@@ -17,7 +17,7 @@ import com.jahanbabu.mvpdemo.Injection
 
 class MainActivity : AppCompatActivity(), MainContract.View, MovieRVAdapter.ItemClickListener {
     override fun onItemClicked(position: Int, id: String) {
-        Toast.makeText(this@MainActivity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
+//        Toast.makeText(this@MainActivity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
 
         val intent = Intent(this@MainActivity, DetailActivity::class.java)
         intent.putExtra("MOVIE_ID", movies[position].id)

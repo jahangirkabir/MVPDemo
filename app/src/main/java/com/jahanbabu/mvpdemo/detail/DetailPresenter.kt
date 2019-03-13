@@ -8,7 +8,10 @@ import com.jahanbabu.mvpdemo.data.source.MovieRepository
  * Listens to user actions from the UI ([DetailFragment]), retrieves the data and updates
  * the UI as required.
  */
-class DetailPresenter(private val movieId: String, private val tasksRepository: MovieRepository, private val detailView: DetailContract.View) : DetailContract.Presenter {
+class DetailPresenter(private var movieId: String, private val tasksRepository: MovieRepository, private val detailView: DetailContract.View) : DetailContract.Presenter {
+    override fun setMovieId(movieId: String) {
+        this.movieId = movieId
+    }
 
     override fun savePlayBackPosition(playbackPosition: Long) {
         tasksRepository.updateMovie(movieId, playbackPosition)

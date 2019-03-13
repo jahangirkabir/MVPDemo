@@ -1,5 +1,6 @@
 package com.jahanbabu.mvpdemo.detail
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,12 +35,10 @@ import com.jahanbabu.mvpdemo.R
  */
 class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClickListener {
     override fun onItemClicked(position: Int, id: String) {
-        Toast.makeText(activity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
+//        Toast.makeText(activity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
 
-//        val intent = Intent(activity, DetailActivity::class.java)
-//        intent.putExtra("MOVIE_ID", movies[position].id)
-//        startActivity(intent)
-//        activity!!.finish()
+        presenter.setMovieId(movies[position].id)
+        presenter.start()
     }
 
     override fun setDataToRecyclerView(movieArrayList: List<Movie>) {

@@ -31,6 +31,8 @@ interface DetailContract {
 
     interface Presenter : BasePresenter {
 
+        fun setMovieId(movieId: String)
+
         fun requestMoviesFromLocal()
 
         fun playVideo()
