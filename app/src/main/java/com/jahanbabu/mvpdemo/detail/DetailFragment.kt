@@ -67,7 +67,7 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
 
     override fun showThumb(thumb: String) {
         Glide.with(activity!!).load(thumb)
-            .placeholder(R.drawable.ic_image_placeholder).dontAnimate()
+            .placeholder(R.drawable.ic_image_placeholder)
             .into(thumbImageView)
     }
 

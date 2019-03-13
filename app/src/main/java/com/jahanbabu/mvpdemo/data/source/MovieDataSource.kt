@@ -22,6 +22,8 @@ interface MovieDataSource {
 
     fun getMovies(callback: LoadMoviesCallback)
 
+    fun getRelatedMovies(title: String, callback: LoadMoviesCallback)
+
     fun getMovie(movieId: String, callback: GetMovieCallback)
 
     fun updateMovie(movieId: String, playbackPosition: Long)

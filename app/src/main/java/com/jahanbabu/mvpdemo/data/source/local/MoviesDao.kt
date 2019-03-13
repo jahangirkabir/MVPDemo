@@ -20,6 +20,14 @@ import com.jahanbabu.mvpdemo.data.Movie
     @Query("SELECT * FROM Movies") fun getMovies(): List<Movie>
 
     /**
+     * Select related movies from the movies table.
+     *
+     * @return related movies.
+     */
+//    @Query("SELECT * FROM Movies WHERE title LIKE :title") fun getRelatedMovies(title: String): List<Movie>
+    @Query("SELECT * FROM Movies WHERE title LIKE :title || '%'") fun getRelatedMovies(title: String): List<Movie>
+
+    /**
      * Select a movie by id.
      *
      * @param movieId the movie id.

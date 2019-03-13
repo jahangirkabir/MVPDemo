@@ -15,7 +15,7 @@ class DetailPresenter(private val movieId: String, private val tasksRepository: 
     }
 
     override fun requestMoviesFromLocal() {
-        tasksRepository.getMovies(object : MovieDataSource.LoadMoviesCallback {
+        tasksRepository.getRelatedMovies(myMovie.title, object : MovieDataSource.LoadMoviesCallback {
             override fun onMovieLoaded(movies: List<Movie>) {
                 with(detailView) {
                     // The view may not be able to handle UI updates anymore
@@ -99,6 +99,7 @@ class DetailPresenter(private val movieId: String, private val tasksRepository: 
     }
 
     private fun showRelatedMovieList(movies: List<Movie>) {
+        relatedMovies = ArrayList()
         relatedMovies = movies
         with(detailView) {
             setDataToRecyclerView(relatedMovies)

@@ -1,10 +1,59 @@
 package com.jahanbabu.mvpdemo.data.source
 
+import android.util.Log
 import com.jahanbabu.mvpdemo.data.Movie
 import java.util.ArrayList
 import java.util.LinkedHashMap
 
 class MovieRepository(val movieRemoteDataSource: MovieDataSource, val movieLocalDataSource: MovieDataSource): MovieDataSource {
+
+    override fun getRelatedMovies(title: String, callback: MovieDataSource.LoadMoviesCallback) {
+//        // Respond immediately with cache if available and not dirty
+        if (cachedMovies.isNotEmpty() && !cacheIsDirty) {
+            val relatedMovies = mutableListOf<Movie>()
+            val titleWords = title.split(" ")
+            for (m in cachedMovies.values){
+                for (s in titleWords){
+                    if (m.title.contains(s, false)) {
+                        Log.e("", m.title)
+                        if (!title.equals(m.title))
+                            relatedMovies.add(m)
+                        break
+                    }
+                }
+            }
+            callback.onMovieLoaded(relatedMovies)
+            return
+        }
+//
+//        if (cacheIsDirty) {
+//            // If the cache is dirty we need to fetch new data from the network.
+//            getMoviesFromRemoteDataSource(callback)
+//        } else {
+//            // Query the local storage if available. If not, query the network.
+//            movieLocalDataSource.getRelatedMovies(title, object : MovieDataSource.LoadMoviesCallback {
+//                override fun onMovieLoaded(movies: List<Movie>) {
+//                    callback.onMovieLoaded(ArrayList(cachedMovies.values))
+//                }
+//
+//                override fun onDataNotAvailable() {
+//                    getMoviesFromRemoteDataSource(callback)
+//                }
+//            })
+//        }
+
+        // Query the local storage if available. If not, query the network.
+//        movieLocalDataSource.getRelatedMovies(title, object : MovieDataSource.LoadMoviesCallback {
+//            override fun onMovieLoaded(movies: List<Movie>) {
+////                callback.onMovieLoaded(ArrayList(cachedMovies.values))
+//                callback.onMovieLoaded(movies)
+//            }
+//
+//            override fun onDataNotAvailable() {
+//                getMoviesFromRemoteDataSource(callback)
+//            }
+//        })
+    }
 
     /**
      * This variable has public visibility so it can be accessed from tests.

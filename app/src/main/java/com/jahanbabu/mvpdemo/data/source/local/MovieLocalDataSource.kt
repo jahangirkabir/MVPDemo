@@ -13,19 +13,33 @@ class MovieLocalDataSource private constructor(
     val moviesDao: MoviesDao
 ) : MovieDataSource {
 
+    override fun getRelatedMovies(title: String, callback: MovieDataSource.LoadMoviesCallback) {
+        appExecutors.diskIO.execute {
+            val movies = moviesDao.getRelatedMovies(title)
+            appExecutors.mainThread.execute {
+                if (movies.isEmpty()) {
+                    // This will be called if the table is new or just empty.
+                    callback.onDataNotAvailable()
+                } else {
+                    callback.onMovieLoaded(movies)
+                }
+            }
+        }
+    }
+
     /**
      * Note: [MovieDataSource.LoadMoviesCallback.onDataNotAvailable] is fired if the database doesn't exist
      * or the table is empty.
      */
     override fun getMovies(callback: MovieDataSource.LoadMoviesCallback) {
         appExecutors.diskIO.execute {
-            val tasks = moviesDao.getMovies()
+            val movies = moviesDao.getMovies()
             appExecutors.mainThread.execute {
-                if (tasks.isEmpty()) {
+                if (movies.isEmpty()) {
                     // This will be called if the table is new or just empty.
                     callback.onDataNotAvailable()
                 } else {
-                    callback.onMovieLoaded(tasks)
+                    callback.onMovieLoaded(movies)
                 }
             }
         }

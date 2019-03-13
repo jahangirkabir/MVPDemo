@@ -15,6 +15,13 @@ class MovieRemoteDataSource private constructor(
     val appExecutors: AppExecutors,
     val moviesDao: MoviesDao
 ) : MovieDataSource {
+    override fun getRelatedMovies(title: String, callback: MovieDataSource.LoadMoviesCallback) {
+        // Simulate network by delaying the execution.
+        val movies = Lists.newArrayList(MOVIES_SERVICE_DATA.values)
+        Handler().postDelayed({
+            callback.onMovieLoaded(movies)
+        }, SERVICE_LATENCY_IN_MILLIS)
+    }
 
     private val SERVICE_LATENCY_IN_MILLIS = 5000L
 
