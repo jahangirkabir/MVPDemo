@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Home
+package com.jahanbabu.mvpdemo.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,16 +12,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Detail.DetailActivity
+import com.jahanbabu.mvpdemo.detail.DetailActivity
 import com.jahanbabu.mvpdemo.Injection
 
 class MainActivity : AppCompatActivity(), MainContract.View, MovieRVAdapter.ItemClickListener {
     override fun onItemClicked(position: Int, id: String) {
-        Toast.makeText(
-            this@MainActivity,
-            "Title: " + movies[position].title,
-            Toast.LENGTH_LONG
-        ).show()
+        Toast.makeText(this@MainActivity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
 
         val intent = Intent(this@MainActivity, DetailActivity::class.java)
         intent.putExtra("MOVIE_ID", movies[position].id)
@@ -36,13 +32,13 @@ class MainActivity : AppCompatActivity(), MainContract.View, MovieRVAdapter.Item
         progressBar!!.visibility = View.GONE
     }
 
-    override fun setDataToRecyclerView(list: ArrayList<Movie>) {
+    override fun setDataToRecyclerView(movieArrayList: ArrayList<Movie>) {
         movies.clear()
-        movies.addAll(list)
+        movies.addAll(movieArrayList)
 
-        presenter.saveMovies(list)
+        presenter.saveMovies(movieArrayList)
 
-        val adapter = MovieRVAdapter(this@MainActivity, list)
+        val adapter = MovieRVAdapter(this@MainActivity, movieArrayList)
         adapter.setClickListener(this@MainActivity)
         recyclerView!!.setAdapter(adapter)
     }

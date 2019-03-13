@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Home
+package com.jahanbabu.mvpdemo.home
 
 import com.jahanbabu.mvpdemo.BasePresenter
 import com.jahanbabu.mvpdemo.BaseView
@@ -12,7 +12,7 @@ interface MainContract {
 
         fun hideProgress()
 
-        fun setDataToRecyclerView(noticeArrayList: ArrayList<Movie>)
+        fun setDataToRecyclerView(movieArrayList: ArrayList<Movie>)
 
         fun onResponseFailure(throwable: Throwable)
 

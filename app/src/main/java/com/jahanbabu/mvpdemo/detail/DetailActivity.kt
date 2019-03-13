@@ -1,8 +1,8 @@
-package com.jahanbabu.mvpdemo.Detail
+package com.jahanbabu.mvpdemo.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.android.architecture.blueprints.todoapp.taskdetail.DetailFragment
+import com.jahanbabu.mvpdemo.home.GetMovieIntractorImpl
 import com.jahanbabu.mvpdemo.Injection
 import com.jahanbabu.mvpdemo.R
 import com.jahanbabu.mvpdemo.util.replaceFragmentInActivity

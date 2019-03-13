@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Login
+package com.jahanbabu.mvpdemo.login
 
 import android.content.Context
 import android.util.Log
@@ -13,7 +13,8 @@ class LoginPresenter(
     val loginView: LoginContract.View) : LoginContract.Presenter {
 
     override fun handelUser(user: FirebaseUser?) {
-        Log.d("LoginPresenter", "ID: ${user!!.uid}\nName: ${user.displayName}\nEmail: ${user.email}\nPhoto: ${user.photoUrl}")
+        //Save user or check or other business logic
+        Log.e("LoginPresenter", "ID: ${user!!.uid}\nName: ${user.displayName}\nEmail: ${user.email}\nPhoto: ${user.photoUrl}")
     }
 
     init {

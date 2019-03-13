@@ -1,5 +1,6 @@
-package com.example.android.architecture.blueprints.todoapp.taskdetail
+package com.jahanbabu.mvpdemo.detail
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.DefaultLoadControl
@@ -21,18 +24,33 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
-import com.jahanbabu.mvpdemo.Detail.DetailContract
+import com.jahanbabu.mvpdemo.Data.Movie
 import com.jahanbabu.mvpdemo.R
-import kotlinx.android.synthetic.main.detail_fragment.*
 
 /**
  * Main UI for the task detail screen.
  */
-class DetailFragment : Fragment(), DetailContract.View {
+class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClickListener {
+    override fun onItemClicked(position: Int, id: String) {
+        Toast.makeText(activity, "Title: " + movies[position].title, Toast.LENGTH_LONG).show()
+
+//        val intent = Intent(activity, DetailActivity::class.java)
+//        intent.putExtra("MOVIE_ID", movies[position].id)
+//        startActivity(intent)
+//        activity!!.finish()
+    }
+
+    override fun setDataToRecyclerView(movieArrayList: List<Movie>) {
+        movies.clear()
+        movies.addAll(movieArrayList)
+
+        val adapter = MovieRVAdapter(activity!!.applicationContext, movieArrayList as MutableList<Movie>)
+        adapter.setClickListener(this)
+        relatedRecyclerView.setAdapter(adapter)
+    }
 
     override fun playMovie(url: String) {
         thumbImageView.visibility = View.GONE
@@ -60,7 +78,7 @@ class DetailFragment : Fragment(), DetailContract.View {
     private var player: SimpleExoPlayer? = null
     private lateinit var playerView: SimpleExoPlayerView
     private lateinit var relatedRecyclerView: RecyclerView
-
+    var movies = mutableListOf<Movie>()
     override lateinit var presenter: DetailContract.Presenter
 
     override var isActive: Boolean = false
@@ -69,6 +87,7 @@ class DetailFragment : Fragment(), DetailContract.View {
     override fun onResume() {
         super.onResume()
         presenter.start()
+//        presenter.requestMoviesFromLocal()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -84,12 +103,18 @@ class DetailFragment : Fragment(), DetailContract.View {
             relatedRecyclerView = findViewById(R.id.relatedRecyclerView)
         }
 
+        initializeRecyclerView()
         // Set up floating action button
         playButton.setOnClickListener {
             presenter.playVideo()
         }
 
         return root
+    }
+
+    private fun initializeRecyclerView() {
+        val layoutManager = LinearLayoutManager(activity)
+        relatedRecyclerView.layoutManager = layoutManager
     }
 
     private fun initializePlayer(url: String) {

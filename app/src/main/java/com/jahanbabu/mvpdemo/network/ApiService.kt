@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Network
+package com.jahanbabu.mvpdemo.network
 
 import com.jahanbabu.mvpdemo.Data.Movie
 import retrofit2.Call

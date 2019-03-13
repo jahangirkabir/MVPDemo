@@ -1,8 +1,8 @@
-package com.jahanbabu.mvpdemo.Home
+package com.jahanbabu.mvpdemo.home
 
 import android.util.Log
 import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Network.ApiService
+import com.jahanbabu.mvpdemo.network.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

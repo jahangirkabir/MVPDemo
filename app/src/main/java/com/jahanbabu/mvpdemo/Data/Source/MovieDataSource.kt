@@ -6,7 +6,7 @@ interface MovieDataSource {
 
     interface LoadMoviesCallback {
 
-        fun onMovieLoaded(tasks: List<Movie>)
+        fun onMovieLoaded(movies: List<Movie>)
 
         fun onDataNotAvailable()
     }

@@ -1,7 +1,6 @@
-package com.jahanbabu.mvpdemo.Login
+package com.jahanbabu.mvpdemo.login
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -18,13 +17,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.jahanbabu.mvpdemo.Home.MainActivity
+import com.jahanbabu.mvpdemo.home.MainActivity
 import com.jahanbabu.mvpdemo.R
 import com.jahanbabu.mvpdemo.util.EspressoIdlingResource
-import com.jahanbabu.mvpdemo.util.showSnackBar
 import com.jahanbabu.mvpdemo.util.showToast
 
 /**
@@ -80,8 +77,8 @@ class LoginFragment : Fragment(), LoginContract.View {
         // [START config_signin]
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //            .requestIdToken(mContext.getString(R.string.web_client_id))
-//            .requestIdToken("456602514519-hu7ionskb4hk4k136rl1um25f88nvcu1.apps.googleusercontent.com")
-            .requestIdToken("456602514519-2o166vtu3t5j9k0gpqcc4f439baj8j8n.apps.googleusercontent.com")
+            .requestIdToken("456602514519-hu7ionskb4hk4k136rl1um25f88nvcu1.apps.googleusercontent.com")
+//            .requestIdToken("456602514519-2o166vtu3t5j9k0gpqcc4f439baj8j8n.apps.googleusercontent.com")
             .requestEmail()
             .build()
         // [END config_signin]
@@ -155,7 +152,7 @@ class LoginFragment : Fragment(), LoginContract.View {
 
     private fun initProgressBar() {
         progressBar = ProgressBar(activity, null, android.R.attr.progressBarStyleLarge)
-        progressBar!!.isIndeterminate = true
+        progressBar.isIndeterminate = true
 
         val relativeLayout = RelativeLayout(activity)
         relativeLayout.gravity = Gravity.CENTER
@@ -165,7 +162,7 @@ class LoginFragment : Fragment(), LoginContract.View {
             RelativeLayout.LayoutParams.MATCH_PARENT,
             RelativeLayout.LayoutParams.MATCH_PARENT
         )
-        progressBar!!.visibility = View.INVISIBLE
+        progressBar.visibility = View.INVISIBLE
 
         activity!!.addContentView(relativeLayout, params)
     }

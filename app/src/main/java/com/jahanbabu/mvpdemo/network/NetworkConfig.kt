@@ -1,12 +1,8 @@
-package com.jahanbabu.mvpdemo.Network
+package com.jahanbabu.mvpdemo.network
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 object NetworkConfig {

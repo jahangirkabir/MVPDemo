@@ -1,9 +1,8 @@
-package com.jahanbabu.mvpdemo.Login
+package com.jahanbabu.mvpdemo.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jahanbabu.mvpdemo.R
-import com.jahanbabu.mvpdemo.Injection
 import com.jahanbabu.mvpdemo.util.replaceFragmentInActivity
 
 class LoginActivity : AppCompatActivity() {

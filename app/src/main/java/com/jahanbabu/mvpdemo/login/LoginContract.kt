@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Login
+package com.jahanbabu.mvpdemo.login
 
 import com.google.firebase.auth.FirebaseUser
 import com.jahanbabu.mvpdemo.BasePresenter

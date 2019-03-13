@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Home
+package com.jahanbabu.mvpdemo.home
 
 import android.content.Context
 import android.os.Build
