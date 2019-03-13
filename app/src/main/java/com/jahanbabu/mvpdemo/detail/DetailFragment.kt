@@ -65,6 +65,8 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
     }
 
     override fun showThumb(thumb: String) {
+        thumbImageView.visibility = View.VISIBLE
+        playButton.visibility = View.VISIBLE
         Glide.with(activity!!).load(thumb)
             .placeholder(R.drawable.ic_image_placeholder)
             .into(thumbImageView)

@@ -11,6 +11,19 @@ import com.google.firebase.auth.FirebaseUser
 class LoginPresenter(
     val activity: LoginActivity,
     val loginView: LoginContract.View) : LoginContract.Presenter {
+    override fun firebaseAuthResult(b: Boolean) {
+        if (b){
+            loginView.showLoginComplete("Sign In Successful")
+            loginView.navigateToMainScreen()
+        } else {
+            loginView.showLoginError("SignInWithCredential:failure")
+        }
+    }
+
+    override fun signInClick() {
+        loginView.showProgress()
+        loginView.navigateToGoogleSigninIntent()
+    }
 
     override fun handelUser(user: FirebaseUser?) {
         //Save user or check or other business logic

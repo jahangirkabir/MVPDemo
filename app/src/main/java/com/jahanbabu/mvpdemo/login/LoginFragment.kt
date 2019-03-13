@@ -28,6 +28,10 @@ import com.jahanbabu.mvpdemo.util.showToast
  * Main UI for the statistics screen.
  */
 class LoginFragment : Fragment(), LoginContract.View {
+    override fun navigateToGoogleSigninIntent() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
 
     override lateinit var presenter: LoginContract.Presenter
 
@@ -93,13 +97,7 @@ class LoginFragment : Fragment(), LoginContract.View {
         submitButton = root.findViewById(R.id.submitButton)
 
         submitButton.setOnClickListener {
-//            presenter.handelLogin(activity!!.applicationContext)
-//            presenter.handelLogin(activity!!.applicationContext)
-
-            showProgress()
-
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            presenter.signInClick()
         }
 
         return root
@@ -122,7 +120,8 @@ class LoginFragment : Fragment(), LoginContract.View {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.e("LoginPresenter", "Google sign in failed", e)
-                showLoginError("Google sign in failed")
+//                showLoginError("Google sign in failed")
+                presenter.firebaseAuthResult(false)
             }
         }
     }
@@ -141,11 +140,10 @@ class LoginFragment : Fragment(), LoginContract.View {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
                     presenter.handelUser(user)
-                    showLoginComplete("Sign In Successful")
-                    navigateToMainScreen()
+                    presenter.firebaseAuthResult(true)
                 } else {
                     // If sign in fails, display a message to the user.
-                    showLoginError("SignInWithCredential:failure")
+                    presenter.firebaseAuthResult(false)
                 }
             }
     }
@@ -166,17 +164,6 @@ class LoginFragment : Fragment(), LoginContract.View {
 
         activity!!.addContentView(relativeLayout, params)
     }
-
-//    private fun initProgressBar() {
-//        progressBar = ProgressBar(activity, null, android.R.attr.progressBarStyleSmall)
-//        progressBar.setIndeterminate(true)
-//        val params = RelativeLayout.LayoutParams(
-//            Resources.getSystem().getDisplayMetrics().widthPixels, 250
-//        )
-//        params.addRule(RelativeLayout.CENTER_IN_PARENT)
-//        activity!!.addContentView(progressBar, params)
-//        progressBar.visibility = View.GONE
-//    }
 
     companion object {
         fun newInstance(): LoginFragment {

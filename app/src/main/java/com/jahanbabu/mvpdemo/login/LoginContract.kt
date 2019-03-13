@@ -18,12 +18,18 @@ interface LoginContract {
 
         fun showLoginComplete(s: String)
 
+        fun navigateToGoogleSigninIntent()
+
         fun navigateToMainScreen()
     }
 
     interface Presenter : BasePresenter {
 
+        fun signInClick()
+
         fun handelUser(u: FirebaseUser?)
+
+        fun firebaseAuthResult(b: Boolean)
 
     }
 }

@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
         LoginPresenter(this@LoginActivity, loginFragment)
-//        LoginPresenter(this@LoginActivity, loginFragment, Injection.provideTasksRepository(applicationContext))
     }
 
 }
