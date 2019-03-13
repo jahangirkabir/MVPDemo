@@ -1,14 +1,18 @@
 package com.jahanbabu.mvpdemo.detail
 
-import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Data.Source.MovieDataSource
-import com.jahanbabu.mvpdemo.Data.Source.MovieRepository
+import com.jahanbabu.mvpdemo.data.Movie
+import com.jahanbabu.mvpdemo.data.source.MovieDataSource
+import com.jahanbabu.mvpdemo.data.source.MovieRepository
 
 /**
  * Listens to user actions from the UI ([DetailFragment]), retrieves the data and updates
  * the UI as required.
  */
 class DetailPresenter(private val movieId: String, private val tasksRepository: MovieRepository, private val detailView: DetailContract.View) : DetailContract.Presenter {
+
+    override fun savePlayBackPosition(playbackPosition: Long) {
+        tasksRepository.updateMovie(movieId, playbackPosition)
+    }
 
     override fun requestMoviesFromLocal() {
         tasksRepository.getMovies(object : MovieDataSource.LoadMoviesCallback {
@@ -35,7 +39,7 @@ class DetailPresenter(private val movieId: String, private val tasksRepository: 
     }
 
     override fun playVideo() {
-        detailView.playMovie(myMovie.url)
+        detailView.playMovie(myMovie.url, myMovie.position)
     }
 
     override fun pauseVideo() {
@@ -89,7 +93,7 @@ class DetailPresenter(private val movieId: String, private val tasksRepository: 
                 showTitle(movie.title)
                 showDescription(movie.description)
                 showThumb(movie.thumb)
-                setMovie(movie.url)
+                setMovie(movie.url, movie.position)
             }
         }
     }

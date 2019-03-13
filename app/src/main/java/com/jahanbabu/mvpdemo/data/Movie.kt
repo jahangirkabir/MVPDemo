@@ -1,4 +1,4 @@
-package com.jahanbabu.mvpdemo.Data
+package com.jahanbabu.mvpdemo.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,5 +11,5 @@ data class Movie(
     var description: String,
     var thumb: String,
     var url: String,
-    var position: Float = 0f
+    var position: Long = 0
 )

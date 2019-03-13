@@ -2,7 +2,7 @@ package com.jahanbabu.mvpdemo.home
 
 import com.jahanbabu.mvpdemo.BasePresenter
 import com.jahanbabu.mvpdemo.BaseView
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 
 interface MainContract {
 

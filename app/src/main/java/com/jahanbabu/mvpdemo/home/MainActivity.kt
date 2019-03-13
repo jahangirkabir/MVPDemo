@@ -11,7 +11,7 @@ import android.view.Gravity
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 import com.jahanbabu.mvpdemo.detail.DetailActivity
 import com.jahanbabu.mvpdemo.Injection
 

@@ -1,10 +1,10 @@
 package com.jahanbabu.mvpdemo
 
 import android.content.Context
-import com.jahanbabu.mvpdemo.Data.Source.MovieRepository
-import com.jahanbabu.mvpdemo.Data.Source.local.MovieLocalDataSource
-import com.jahanbabu.mvpdemo.Data.Source.local.MovieDatabase
-import com.jahanbabu.mvpdemo.Data.Source.remote.MovieRemoteDataSource
+import com.jahanbabu.mvpdemo.data.source.MovieRepository
+import com.jahanbabu.mvpdemo.data.source.local.MovieLocalDataSource
+import com.jahanbabu.mvpdemo.data.source.local.MovieDatabase
+import com.jahanbabu.mvpdemo.data.source.remote.MovieRemoteDataSource
 import com.jahanbabu.mvpdemo.util.AppExecutors
 
 

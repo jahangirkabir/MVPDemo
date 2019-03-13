@@ -1,6 +1,6 @@
 package com.jahanbabu.mvpdemo.network
 
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 import retrofit2.Call
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*

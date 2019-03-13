@@ -1,11 +1,11 @@
-package com.jahanbabu.mvpdemo.Data.Source.local
+package com.jahanbabu.mvpdemo.data.source.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 
 /**
  * Data Access Object for the movies table.
@@ -46,10 +46,10 @@ import com.jahanbabu.mvpdemo.Data.Movie
      * Update the complete status of a movie
      *
      * @param movieId    id of the movie
-     * @param completed status to be updated
+     * @param position status to be updated
      */
     @Query("UPDATE Movies SET position = :position WHERE id = :movieId")
-    fun updateViewPosition(movieId: String, position: Float)
+    fun updateViewPosition(movieId: String, position: Long)
     
     /**
      * Delete all movies.

@@ -1,15 +1,15 @@
-package com.jahanbabu.mvpdemo.Data.Source.local
+package com.jahanbabu.mvpdemo.data.source.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 
 /**
  * The Room Database that contains the Movie table.
  */
-@Database(entities = [Movie::class], version = 1)
+@Database(entities = [Movie::class], version = 2)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun moviesDao(): MoviesDao
@@ -24,7 +24,7 @@ abstract class MovieDatabase : RoomDatabase() {
             synchronized(lock) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                            MovieDatabase::class.java, "Movies.db")
+                            MovieDatabase::class.java, "Movies.db").fallbackToDestructiveMigration()
                             .build()
                 }
                 return INSTANCE!!

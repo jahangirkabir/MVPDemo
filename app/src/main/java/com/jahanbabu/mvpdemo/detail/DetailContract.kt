@@ -2,7 +2,7 @@ package com.jahanbabu.mvpdemo.detail
 
 import com.jahanbabu.mvpdemo.BasePresenter
 import com.jahanbabu.mvpdemo.BaseView
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 
 
 /**
@@ -24,9 +24,9 @@ interface DetailContract {
 
         fun setDataToRecyclerView(movieArrayList: List<Movie>)
 
-        fun setMovie(url: String)
+        fun setMovie(url: String, position: Long)
 
-        fun playMovie(url: String)
+        fun playMovie(url: String, position: Long)
     }
 
     interface Presenter : BasePresenter {
@@ -34,6 +34,8 @@ interface DetailContract {
         fun requestMoviesFromLocal()
 
         fun playVideo()
+
+        fun savePlayBackPosition(playbackPosition: Long)
 
         fun pauseVideo()
 

@@ -1,6 +1,6 @@
-package com.jahanbabu.mvpdemo.Data.Source
+package com.jahanbabu.mvpdemo.data.source
 
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 
 interface MovieDataSource {
 
@@ -24,7 +24,7 @@ interface MovieDataSource {
 
     fun getMovie(movieId: String, callback: GetMovieCallback)
 
-    fun updateMovie(taskId: String)
+    fun updateMovie(movieId: String, playbackPosition: Long)
 
     fun refreshMovies()
 

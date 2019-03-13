@@ -1,6 +1,5 @@
 package com.jahanbabu.mvpdemo.detail
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,7 +26,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 import com.jahanbabu.mvpdemo.R
 
 /**
@@ -52,17 +51,18 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
         relatedRecyclerView.setAdapter(adapter)
     }
 
-    override fun playMovie(url: String) {
+    override fun playMovie(url: String, position: Long) {
         thumbImageView.visibility = View.GONE
         playButton.visibility = View.GONE
 
+        player!!.seekTo(position)
         val mediaSource = buildMediaSource(Uri.parse(url))
-        player!!.prepare(mediaSource, true, false)
+        player!!.prepare(mediaSource, false, false)
         player!!.playWhenReady = true
     }
 
-    override fun setMovie(url: String) {
-        initializePlayer(url)
+    override fun setMovie(url: String, position: Long) {
+        initializePlayer()
     }
 
     override fun showThumb(thumb: String) {
@@ -87,7 +87,11 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
     override fun onResume() {
         super.onResume()
         presenter.start()
-//        presenter.requestMoviesFromLocal()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        releasePlayer()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -117,7 +121,7 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
         relatedRecyclerView.layoutManager = layoutManager
     }
 
-    private fun initializePlayer(url: String) {
+    private fun initializePlayer() {
         if (player == null) {
             player = ExoPlayerFactory.newSimpleInstance(
                 DefaultRenderersFactory(activity!!.applicationContext),
@@ -129,6 +133,15 @@ class DetailFragment : Fragment(), DetailContract.View, MovieRVAdapter.ItemClick
         }
 //        val mediaSource = buildMediaSource(Uri.parse(url))
 //        player!!.prepare(mediaSource, true, false)
+    }
+
+    private fun releasePlayer() {
+        if (player != null) {
+            var playbackPosition = player!!.getCurrentPosition()
+            presenter.savePlayBackPosition(playbackPosition)
+            player!!.release()
+            player = null
+        }
     }
 
     private fun buildMediaSource(uri: Uri): MediaSource {

@@ -1,11 +1,11 @@
-package com.jahanbabu.mvpdemo.Data.Source.remote
+package com.jahanbabu.mvpdemo.data.source.remote
 
 import android.os.Handler
 import androidx.annotation.VisibleForTesting
-import com.jahanbabu.mvpdemo.Data.Source.MovieDataSource
+import com.jahanbabu.mvpdemo.data.source.MovieDataSource
 import com.google.common.collect.Lists
-import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Data.Source.local.MoviesDao
+import com.jahanbabu.mvpdemo.data.Movie
+import com.jahanbabu.mvpdemo.data.source.local.MoviesDao
 import com.jahanbabu.mvpdemo.util.AppExecutors
 
 /**
@@ -60,7 +60,7 @@ class MovieRemoteDataSource private constructor(
         }
     }
 
-    override fun updateMovie(movieId: String) {
+    override fun updateMovie(movieId: String, playbackPosition: Long) {
         // Not required for the remote data source because the {@link MovieRepository} handles
         // converting from a {@code movieId} to a {@link movie} using its cached data.
     }

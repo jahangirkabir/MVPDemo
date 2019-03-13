@@ -1,8 +1,8 @@
 package com.jahanbabu.mvpdemo.home
 
 import android.content.Context
-import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Data.Source.MovieDataSource
+import com.jahanbabu.mvpdemo.data.Movie
+import com.jahanbabu.mvpdemo.data.source.MovieDataSource
 
 /**
  * Listens to user actions from the UI ([MainFragment]), retrieves the data and updates

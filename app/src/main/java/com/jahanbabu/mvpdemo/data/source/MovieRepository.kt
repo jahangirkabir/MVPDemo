@@ -1,6 +1,6 @@
-package com.jahanbabu.mvpdemo.Data.Source
+package com.jahanbabu.mvpdemo.data.source
 
-import com.jahanbabu.mvpdemo.Data.Movie
+import com.jahanbabu.mvpdemo.data.Movie
 import java.util.ArrayList
 import java.util.LinkedHashMap
 
@@ -50,9 +50,10 @@ class MovieRepository(val movieRemoteDataSource: MovieDataSource, val movieLocal
         }
     }
 
-    override fun updateMovie(movieId: String) {
+    override fun updateMovie(movieId: String, playbackPosition: Long) {
         getMovieWithId(movieId)?.let {
-//            activateMovie(it)
+            it.position = playbackPosition
+            movieLocalDataSource.updateMovie(movieId, playbackPosition)
         }
     }
 

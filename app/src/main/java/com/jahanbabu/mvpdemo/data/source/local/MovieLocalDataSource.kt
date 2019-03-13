@@ -1,8 +1,8 @@
-package com.jahanbabu.mvpdemo.Data.Source.local
+package com.jahanbabu.mvpdemo.data.source.local
 
 import androidx.annotation.VisibleForTesting
-import com.jahanbabu.mvpdemo.Data.Movie
-import com.jahanbabu.mvpdemo.Data.Source.MovieDataSource
+import com.jahanbabu.mvpdemo.data.Movie
+import com.jahanbabu.mvpdemo.data.source.MovieDataSource
 import com.jahanbabu.mvpdemo.util.AppExecutors
 
 /**
@@ -52,9 +52,8 @@ class MovieLocalDataSource private constructor(
         appExecutors.diskIO.execute { moviesDao.insertMovie(movie) }
     }
 
-    override fun updateMovie(movieId: String) {
-        // Not required for the local data source because the {@link MovieRepository} handles
-        // converting from a {@code movieId} to a {@link movie} using its cached data.
+    override fun updateMovie(movieId: String, playbackPosition: Long) {
+        appExecutors.diskIO.execute { moviesDao.updateViewPosition(movieId, playbackPosition) }
     }
 
     override fun refreshMovies() {
